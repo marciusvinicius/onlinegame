@@ -1,7 +1,8 @@
-from wserver.auth.models import User
-
+import uuid
+import datetime
 
 def save_new_user(data):
+    from auth.models import User
     user = User.query.filter_by(email=data['email']).first()
     if not user:
         new_user = User(
@@ -26,13 +27,16 @@ def save_new_user(data):
 
 
 def get_all_users():
+    from auth.models import User
     return User.query.all()
 
 
 def get_a_user(public_id):
+    from auth.models import User
     return User.query.filter_by(public_id=public_id).first()
 
 
 def save_changes(data):
-    db.session.add(data)
-    db.session.commit()
+    # db.session.add(data)
+    # db.session.commit()
+    pass

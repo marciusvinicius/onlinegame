@@ -5,9 +5,9 @@ from flask_bcrypt import Bcrypt
 from flask_restplus import Api
 from flask import Blueprint
 
-from wserver.auth.service import api as user_ns
+from auth.resource import api as user_ns
 
-from .config import config_by_name
+from config import config_by_name
 
 db = SQLAlchemy()
 flask_bcrypt = Bcrypt()

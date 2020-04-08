@@ -14,8 +14,9 @@ RUN set -ex; \
     rm -rf /var/lib/apt/lists/*;
 
 COPY . .
-EXPOSE 80
-RUN python manage.py db init \
-    python manage.py db migrate --message 'initial database migration' \
-    python manage.py db upgrade
-CMD gunicorn -b 0.0.0.0:80 -w 2 --reload wsserver.wsgi
+EXPOSE 5000
+RUN python manage.py db init; \
+    python manage.py db migrate --message 'initial database migration'; \
+    python manage.py db upgrade;
+#CMD gunicorn -b 0.0.0.0:80 -w 2 --reload wserver
+CMD python manage.py run
