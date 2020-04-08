@@ -1,10 +1,10 @@
 import os
 import unittest
-from wserver.app import blueprint
+from app import blueprint
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
 
-from wserver.app import create_app, db
+from app import create_app, db
 
 app = create_app(os.getenv('COMMAND') or 'dev')
 app.register_blueprint(blueprint)

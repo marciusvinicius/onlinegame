@@ -14,27 +14,34 @@ x-app-container:
 
 services:
     app:
-        << : *app-container
-        ports:
-            - "8080:80"
+      << : *app-container
+      ports:
+          - "8080:80"
 
     db:
-        image: postgres
-        restart: unless-stopped
-        expose:
-            - 5432
-        environment:
-            POSTGRES_USER: myuser
-            POSTGRES_PASSWORD: mypass
-            POSTGRES_DB: db
+      image: postgres
+      restart: unless-stopped
+      expose:
+          - 5432
+      environment:
+          POSTGRES_USER: myuser
+          POSTGRES_PASSWORD: mypass
+          POSTGRES_DB: db
 
     memcached:
-        restart: unless-stopped
-        image: memcached:1.5.17-alpine
+      restart: unless-stopped
+      image: memcached:1.5.17-alpine
 
     redis:
-        restart: unless-stopped
-        image: redis
+      restart: unless-stopped
+      image: redis
+
+    #Gserver TCP/UDP servers
+    # gserver:
+    #   build: ./gserver
+    #   restart: unless-stopped
+    #   ports:
+    #     - "1234:1234"
 
     # avaiapp:
     #     build: ./wserver

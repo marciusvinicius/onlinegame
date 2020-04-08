@@ -2,3 +2,4 @@
 # Main responsability
 - Receive and save any online server
 - Update DB of online servers
+- Health check in all servers

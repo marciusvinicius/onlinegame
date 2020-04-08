@@ -15,7 +15,7 @@ RUN set -ex; \
 
 COPY . .
 EXPOSE 80
-RUN ./manage.py db init \
-    ./manage.py db migrate --message 'initial database migration' \
-    ./manage.py db upgrade
+RUN python manage.py db init \
+    python manage.py db migrate --message 'initial database migration' \
+    python manage.py db upgrade
 CMD gunicorn -b 0.0.0.0:80 -w 2 --reload wsserver.wsgi
