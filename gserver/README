@@ -1,0 +1,6 @@
+
+# Main responsability
+- Check if user is authenticated
+- Receive states update on TCP/UDP
+- Send Others states on TCP/UDP
+- Sync state with wserver

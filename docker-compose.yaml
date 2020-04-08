@@ -1,0 +1,56 @@
+version: "3.7"
+x-app-container:
+  &app-container
+  build: ./wserver
+  restart: unless-stopped
+  environment:
+    DEBUG: "False"
+    DATABASE_URL: "postgress://myuser:mypass@db/db"
+    COMMAND: "dev"
+  volumes:
+    - .:/usr/src/app
+  depends_on:
+    - db
+
+services:
+    app:
+        << : *app-container
+        ports:
+            - "8080:80"
+
+    db:
+        image: postgres
+        restart: unless-stopped
+        expose:
+            - 5432
+        environment:
+            POSTGRES_USER: myuser
+            POSTGRES_PASSWORD: mypass
+            POSTGRES_DB: db
+
+    memcached:
+        restart: unless-stopped
+        image: memcached:1.5.17-alpine
+
+    redis:
+        restart: unless-stopped
+        image: redis
+
+    # avaiapp:
+    #     build: ./wserver
+    #     restart: unless-stopped
+    #     environment:
+    #     DEBUG: "False"
+    #     DATABASE_URL: "postgress://myuser:mypass@db/db"
+    #     COMMAND: "dev"
+    #     volumes:
+    #         - .:/usr/src/avaiapp
+    #     ports:
+    #         - "8080:80"
+    #     depends_on:
+    #         - avaidb
+    #         - celery_worker
+    #         - redis
+    # celery_worker:
+    #     << : *app-container
+    #     command: ['celery', 'worker', '--beat', '-A', 'wserver', '--scheduler', 'django', '--loglevel', 'info']

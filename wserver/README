@@ -1,0 +1,6 @@
+
+# Main responsability
+
+- Check if a update exist and delivery to the client a url for
+- Check if user is authenticated and delivery responses on JSON
+- Check the best session for the user, returning a gserver url for connect
