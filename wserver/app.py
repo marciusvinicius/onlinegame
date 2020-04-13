@@ -10,7 +10,7 @@ from auth.resource import api as user_ns
 from config import config_by_name
 
 db = SQLAlchemy()
-flask_bcrypt = Bcrypt()
+#flask_bcrypt = Bcrypt()
 blueprint = Blueprint('api', __name__)
 api = Api(blueprint,
           title='FLASK RESTPLUS API BOILER-PLATE WITH JWT',
@@ -24,5 +24,5 @@ def create_app(config_name):
     #Migrate this to environ
     app.config.from_object(config_by_name[config_name])
     db.init_app(app)
-    flask_bcrypt.init_app(app)
+    api.init_app(app)
     return app
