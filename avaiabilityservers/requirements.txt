@@ -10,5 +10,5 @@ MarkupSafe==1.0
 SQLAlchemy==1.2.5
 python-dateutil==2.7.0
 pytz==2018.3
-Celery==4.3.0
+Celery==5.2.2
 redis==3.4.1
